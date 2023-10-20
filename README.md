@@ -9,4 +9,5 @@ PNSCR based cockpit application
 
 #### Supported Version on "br_ar_13_comm_infra_dev" branch
 | Android Version        | NXP Release          | NXP Tag  |
-
+| :-------------: |:---------------------:| :-----:|
+|       |   |   |
