@@ -1,0 +1,56 @@
+/*
+ Copyright 2022 NXP.
+
+ NXP Confidential. This software is owned or controlled by NXP and may only be used
+ strictly in accordance with the applicable license terms. By expressly accepting such
+ terms or by downloading, installing, activating and/or otherwise using the software,
+ you are agreeing that you have read, and that you agree to comply with and are bound by,
+ such license terms. If you do not agree to be bound by the applicable license terms,
+ then you may not retain,install, activate or otherwise use the software.
+*/
+
+/* Before executing this script, T4T tag should be placed in proximity. 
+   This script is compatible with T4T NDEF/NON-NDEF 4K/8K cards.
+*/
+
+interval 50
+
+reset 1
+
+#RF Deactivate cmd - Discovery mode
+send 21060103
+trigger 6106
+#RF Deactivate cmd - Idle mode
+send 21060100
+#RF Discovery cmd
+send 21031309000101010201030180018101820183010601
+trigger 6105
+#Select NDEF Tag Application cmd
+send 00000D00A4040007D276000085010100
+trigger 6006
+#Select CC file
+send 00000700A4000C02E103
+trigger 6006
+#Read CC file
+send 00000500B000000F
+trigger 6006
+#Select NDEF file cmd
+send 00000700A4000C02E104
+trigger 6006
+#Read the length of NDEF
+send 00000500B0000002
+trigger 600603010001
+#Read Data from file with expected respose length
+send 00000500B000023B
+trigger 6006
+#Read Data from file with expected respose length
+send 00000500B0003D20
+trigger 6006
+
+loop 50
+
+#T4T presense check cmd
+send 211000
+trigger 6110
+
+end

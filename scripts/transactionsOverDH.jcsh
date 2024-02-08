@@ -1,0 +1,74 @@
+# Copyright 2022 NXP.
+
+# NXP Confidential. This software is owned or controlled by NXP and may only be used
+# strictly in accordance with the applicable license terms. By expressly accepting such
+# terms or by downloading, installing, activating and/or otherwise using the software,
+# you are agreeing that you have read, and that you agree to comply with and are bound by,
+# such license terms. If you do not agree to be bound by the applicable license terms,
+# then you may not retain, install, activate or otherwise use the software.
+
+/mode echo=off trace=on verbose=on commDetails=on
+
+/set-var numberOfLoops 1
+/set-var updateIterator 0
+/set-var fail_count 0
+
+if ${argv;l} > 0
+	/echo "Changing numberOfLoops from ${numberOfLoops} to ${1}"
+	/set-var numberOfLoops ${1}
+end
+
+/set-var CLA 0x80
+/set-var INS 0xEE
+/set-var PR1 00
+/set-var PR2 00
+/set-var dataSizeToBeSend ${2}
+/set-var LE 00
+
+/set-var size 01
+/set-var dataField 01
+#activateCard
+while ${size} < ${dataSizeToBeSend}
+	/set-var size ${size} + 1
+	/set-var dataField ${dataField}${size;h2}
+end
+/select "325041592E5359532E4444463031"
+/printf "Data forming\n"
+try
+	while $(/exp ${updateIterator} < ${numberOfLoops})
+		/echo "-------------------------------------"
+		/echo "UPDATE #" ${updateIterator}
+		/echo "-------------------------------------"
+
+		#Open a wired mode connection 
+		/printf "Applet selection\n"
+		/printf "Applet selection - Done\n"
+
+		if ${dataSizeToBeSend} <= 0xFF
+			/send ${CLA;h2}${INS;h2}${PR1;h2}${PR2;h2}${dataSizeToBeSend;h2}${dataField}${LE;h2} *9000
+		else
+			/send ${CLA;h2}${INS;h2}${PR1;h2}${PR2;h2}${dataSizeToBeSend;h6}${dataField}${LE;h4}  *9000
+		end
+		
+		/printf "Data Send\n"
+		/set-var updateIterator $(/exp ${updateIterator} + 1)
+		/printf "update iterator\n"
+		/printf ${updateIterator}
+		#/sleep 1s
+	end
+	
+	/close	
+catch 1
+	/printf "Exception raised\n"
+	/close	
+end
+
+/echo "-----------------------------------------"
+/echo "End:" ${time;fmt=H:M:S}
+/echo "-------DWP Connection check  ${numberOfLoops}x LOOP-------"
+/echo "                                         "
+/printf "\nPASS# ${updateIterator} FAIL# 0\n"
+/echo "ACTUAL LOOPS DONE:" ${updateIterator}
+/echo "-----------------------------------------"
+
+/mode echo=on trace=on verbose=on commDetails=on

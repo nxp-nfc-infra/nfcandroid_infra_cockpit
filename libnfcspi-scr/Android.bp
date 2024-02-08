@@ -1,0 +1,87 @@
+//
+// Copyright 2022 NXP.
+//
+// NXP Confidential. This software is owned or controlled by NXP and may only be
+// used strictly in accordance with the applicable license terms. By expressly
+// accepting such terms or by downloading, installing, activating and/or
+// otherwise using the software, you are agreeing that you have read, and that
+// you agree to comply with and are bound by, such license terms. If you do not
+// agree to be bound by the applicable license terms, then you may not
+// retain,install, activate or otherwise use the software.
+ 
+//### Select the JCOP OS Version ####
+JCOP_VER_3_1 = ["1"]
+JCOP_VER_3_2 = ["2"]
+JCOP_VER_3_3 = ["3"]
+JCOP_VER_4_0 = ["4"]
+
+//variables for NFC_NXP_CHIP_TYPE
+PN65T = ["1"]
+PN66T = ["2"]
+PN67T = ["3"]
+PN80T = ["4"]
+SN100X = ["5"]
+
+//### Select the CHIP ####
+NXP_CHIP_TYPE = SN100X
+cc_binary {
+    name: "pnscr_nfc",
+
+    srcs: [
+        "main/*.c",
+        "nfc/utils/*.c",
+        "nfc/utils/*.cpp",
+        "nfc/hal/*.c",
+        "nfc/log/*.c",
+        "nfc/tml/*.c",
+        "spi/lib/*.c",
+        "spi/log/*.c",
+        "spi/pal/spi/*.c",
+        "spi/pal/*c",
+        "spi/spm/*.c",
+    ],
+
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wextra",
+        "-DJCOP_VER_3_1=1",
+        "-DJCOP_VER_3_2=2",
+        "-DJCOP_VER_3_3=3",
+        "-DJCOP_VER_4_0=4",
+        "-DNFC_NXP_ESE_VER=4",
+        "-DANDROID",
+        "-DNXP_UICC_ENABLE",
+        "-DNXP_HW_SELF_TEST",
+        "-DNFC_NXP_HFO_SETTINGS=FALSE",
+        "-DNFC_NXP_CHIP_PN548AD=1",
+        "-DPN65T=1",
+        "-DPN66T=2",
+        "-DPN67T=3",
+        "-DPN80T=4",
+        "-DSN100X=5",
+        "-DNFC_NXP_CHIP_TYPE=PN80T",
+        "-DNFC_NXP_ESE_VER=4",
+        "-Wno-date-time",
+        ],
+
+    local_include_dirs: [
+        "main",
+        "nfc/utils",
+        "nfc/inc",
+        "nfc/common",
+        "nfc/hal",
+        "nfc/log",
+        "nfc/tml",
+        "spi/inc",
+        "spi/common",
+        "spi/lib",
+        "spi/log",
+        "spi/pal/spi",
+        "spi/pal",
+        "spi/include",
+    ],
+
+    shared_libs: ["liblog"],
+
+}

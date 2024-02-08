@@ -1,0 +1,39 @@
+/*
+ Copyright 2022 NXP.
+
+ NXP Confidential. This software is owned or controlled by NXP and may only be used
+ strictly in accordance with the applicable license terms. By expressly accepting such
+ terms or by downloading, installing, activating and/or otherwise using the software,
+ you are agreeing that you have read, and that you agree to comply with and are bound by,
+ such license terms. If you do not agree to be bound by the applicable license terms,
+ then you may not retain,install, activate or otherwise use the software.
+*/
+
+/* Before executing this script, T2T tag should be placed in proximity. 
+   This script is compatible with Mifare Ultralight C.
+*/
+
+reset 1
+
+interval 50
+
+#Tag sleep cmd
+send 0000025000
+trigger 6006
+#RF deactivate cmd
+send 21060101
+trigger 6106
+#RF Discovery select T2T protocol
+send 210403010201
+trigger 6105
+#T2T Read cmd with valid block id
+send 0000023002
+trigger 6006
+
+loop 50
+
+#T2T Read cmd
+send 0000023000
+trigger 6006
+
+end

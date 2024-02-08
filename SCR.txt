@@ -1,0 +1,38 @@
+NXP Software Content Register
+--------------------------------------------
+Repository: Infra_Cockpit_application
+Outgoing License: LA_OPT_NXP_Software_License v53 December 2023 - Standard License, license in Section 2.2 applies
+License File: LICENSE.pdf
+Description and comments:  PNSCR binary files under the directory binary
+Package Category:          PNSCR binary
+Type of content:           Binary
+Release Location:          collabnet.nxp.com
+Origin:                    NXP (proprietary)
+--------------------------------------------
+Repository: Infra_Cockpit_application
+Outgoing License: LA_OPT_NXP_Software_License v53 December 2023 - Standard License, license in Section 2.2 applies
+License File: LICENSE.pdf
+Description and comments:  PNSCR script files under the directory scripts
+Package Category:          PNSCR Scripts
+Type of content:           Scripts
+Release Location:          collabnet.nxp.com
+Origin:                    NXP (proprietary)
+--------------------------------------------
+Repository: Infra_Cockpit_application
+Outgoing License: LA_OPT_NXP_Software_License v53 December 2023 - Standard License, license in Section 2.2 applies
+License File: LICENSE.pdf
+Description and comments:  User Manual
+Package Category:          PNSCR Documents
+Type of content:           Documentation
+Release Location:          collabnet.nxp.com
+Origin:                    NXP (proprietary)
+--------------------------------------------
+Repository: Infra_Cockpit_application
+Outgoing License: LA_OPT_NXP_Software_License v53 December 2023 - Standard License, license in Section 2.2 applies
+License File: LICENSE.pdf
+Description and comments:  Libnfcspi-scr
+Package Category:          Source code
+Type of content:           Source
+Release Location:          collabnet.nxp.com
+Origin:                    NXP (proprietary)
+--------------------------------------------

@@ -1,0 +1,63 @@
+/*
+ Copyright 2022 NXP.
+
+ NXP Confidential. This software is owned or controlled by NXP and may only be used
+ strictly in accordance with the applicable license terms. By expressly accepting such
+ terms or by downloading, installing, activating and/or otherwise using the software,
+ you are agreeing that you have read, and that you agree to comply with and are bound by,
+ such license terms. If you do not agree to be bound by the applicable license terms,
+ then you may not retain,install, activate or otherwise use the software.
+*/
+
+/* This script contains NCI & HCI commands for SN110 init sequence
+   after turning on NFCC */
+
+interval 50
+
+reset 1
+send 20000100
+send 2001020000
+send 20030301A044
+send 20030301A068
+send 20000100
+send 2001020000
+send 2F0200
+send 20030D06A039A01AA01BA01CA027A11F
+send 20030301A015
+send 20030301A007
+send 20030301A08E
+send 20030301A00F
+send 20030301A085
+send 20020601A01D020000
+send 20030301A00F
+send 2003020100
+send 2003020129
+send 2003020161
+send 2003020160
+send 21000D04040302050303030201800180
+send 220000
+send 2201021001
+send 010003810201
+send 010007810103028081C0
+send 0100058101060100
+send 2201028001
+send 010003810204
+send 2201028101
+send 010003810204
+send 220102C001
+send 010003810204
+send 220302C001
+send 2003020152
+send 20020401850101
+send 2F2100
+send 20090100
+send 20020401020101
+send 20021701291446666D010112020207FF03020013040164070103
+send 20021A02611446666D010112020207FF03020013040164070103600108
+send 20021005300104310100320160380101500102
+send 200205010002F401
+send 21031309000101010201030180018101820183010601
+send 21060100
+send 21012A00070209103BD2760000850101120200390103C03B0401030001050003C03B000003C03B010003C03B02
+send 21031309000101010201030180018101820183010601
+sleep 50
